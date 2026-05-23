@@ -216,7 +216,86 @@ HERO
 ===================================================== */
 
 .hero{
+/* =====================================================
+TIME FILTERS
+===================================================== */
 
+.time-filters{
+
+  display:flex;
+
+  gap:12px;
+
+  margin-top:24px;
+
+  overflow-x:auto;
+
+  padding-bottom:6px;
+
+}
+
+.time-filters::-webkit-scrollbar{
+  display:none;
+}
+
+.time-btn{
+
+  border:none;
+
+  padding:13px 18px;
+
+  border-radius:18px;
+
+  background:
+    rgba(255,255,255,0.7);
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.04);
+
+  font-weight:700;
+
+  color:var(--text);
+
+  cursor:pointer;
+
+  transition:0.25s ease;
+
+  white-space:nowrap;
+
+}
+
+.time-btn:hover{
+
+  transform:translateY(-2px);
+
+}
+
+.time-btn.active{
+
+  background:
+    linear-gradient(
+      135deg,
+      #0A516D,
+      #146F91
+    );
+
+  color:white;
+
+  box-shadow:
+    0 14px 35px rgba(10,81,109,0.24);
+
+}
+
+.time-btn.custom{
+
+  background:
+    rgba(125,173,147,0.16);
+
+  color:#0A516D;
+
+}
   background:
     linear-gradient(
       135deg,
@@ -646,7 +725,93 @@ APP
 ===================================================== -->
 
 <div class="container">
+  
+<!-- =====================================================
+STORE BAR PREMIUM
+===================================================== -->
 
+<div class="store-bar">
+
+  <div class="store-selector">
+
+    <button
+      class="store-btn"
+      onclick="toggleStoreMenu()"
+    >
+
+      <span id="currentStoreName">
+        ZentarioShop
+      </span>
+
+      <span class="store-arrow">
+        ⌄
+      </span>
+
+    </button>
+
+    <div
+      class="store-menu"
+      id="storeMenu"
+    >
+
+      <div id="storeList"></div>
+
+      <button
+        class="new-store-btn"
+        onclick="openStoreModal()"
+      >
+        Nueva tienda
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =====================================================
+STORE MODAL
+===================================================== -->
+
+<div
+  class="modal-overlay"
+  id="storeModal"
+>
+
+  <div class="modal-box">
+
+    <h3>
+      Nueva tienda
+    </h3>
+
+    <input
+      type="text"
+      id="storeInput"
+      placeholder="Nombre de la tienda"
+    >
+
+    <div class="modal-buttons">
+
+      <button
+        class="modal-cancel"
+        onclick="closeStoreModal()"
+      >
+        Cancelar
+      </button>
+
+      <button
+        class="modal-create"
+        onclick="createStore()"
+      >
+        Crear
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+  
   <!-- =====================================================
   DASHBOARD
   ===================================================== -->
@@ -657,7 +822,38 @@ APP
   >
 
     <div class="hero">
+<!-- =====================================================
+TIME FILTERS
+===================================================== -->
 
+<div class="time-filters">
+
+  <button
+    class="time-btn active"
+  >
+    7D
+  </button>
+
+  <button
+    class="time-btn"
+  >
+    30D
+  </button>
+
+  <button
+    class="time-btn"
+  >
+    3M
+  </button>
+
+  <button
+    class="time-btn custom"
+  >
+    Custom
+  </button>
+
+</div>
+      
       <h1>
         Zentario Profit
       </h1>
