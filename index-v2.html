@@ -1,36 +1,21 @@
-<!-- =====================================================
-ZENTARIO PROFIT V2
+<!-- =========================
+ZENTARIO PROFIT
 PREMIUM ECOMMERCE COD APP
-===================================================== -->
+========================= -->
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-/>
-
-<title>Zentario Profit V2</title>
+<title>Zentario Profit</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-  rel="stylesheet"
-/>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* =====================================================
-ROOT
-===================================================== */
 
 :root{
 
@@ -39,23 +24,20 @@ ROOT
   --green:#7DAD93;
   --orange:#D89A2B;
   --red:#E35B5B;
-
-  --text:#18323B;
+  --text:#15313C;
 
   --glass:
-    rgba(255,255,255,0.62);
+    rgba(255,255,255,0.55);
 
   --border:
-    rgba(255,255,255,0.38);
+    rgba(255,255,255,0.35);
 
   --shadow:
-    0 20px 60px rgba(10,81,109,0.08);
+    0 20px 50px rgba(10,81,109,0.08);
+
+  --radius:30px;
 
 }
-
-/* =====================================================
-BASE
-===================================================== */
 
 *{
   margin:0;
@@ -73,17 +55,13 @@ body{
   font-family:'Inter',sans-serif;
 
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(125,173,147,0.14),
-      transparent 35%
-    ),
+    radial-gradient(circle at top left,
+    rgba(125,173,147,0.15),
+    transparent 35%),
 
-    radial-gradient(
-      circle at top right,
-      rgba(10,81,109,0.14),
-      transparent 30%
-    ),
+    radial-gradient(circle at top right,
+    rgba(10,81,109,0.15),
+    transparent 30%),
 
     linear-gradient(
       180deg,
@@ -91,347 +69,151 @@ body{
       #F4F7F8 100%
     );
 
-  color:var(--text);
-
   min-height:100vh;
 
-  overflow-x:hidden;
-
-}
-
-/* =====================================================
-SIDEBAR
-===================================================== */
-
-.sidebar-btn{
-
-  position:fixed;
-
-  top:24px;
-  left:20px;
-
-  width:56px;
-  height:56px;
-
-  border:none;
-
-  border-radius:20px;
-
-  background:
-    rgba(255,255,255,0.72);
-
-  backdrop-filter:blur(16px);
-
-  box-shadow:var(--shadow);
-
-  font-size:24px;
-
-  z-index:1001;
-
-  cursor:pointer;
-
-}
-
-.sidebar{
-
-  position:fixed;
-
-  top:0;
-  left:-300px;
-
-  width:280px;
-  height:100vh;
-
-  background:
-    rgba(255,255,255,0.76);
-
-  backdrop-filter:blur(25px);
-
-  padding:110px 24px;
-
-  transition:0.35s ease;
-
-  z-index:1000;
-
-  box-shadow:
-    20px 0 70px rgba(0,0,0,0.08);
-
-}
-
-.sidebar.active{
-  left:0;
-}
-
-.sidebar h2{
-
-  color:var(--blue);
-
-  margin-bottom:26px;
-
-}
-
-.sidebar a{
-
-  display:block;
-
-  text-decoration:none;
-
-  margin-bottom:14px;
-
-  padding:16px;
-
-  border-radius:20px;
-
-  color:#234;
-
-  font-weight:600;
-
-  transition:0.2s ease;
-
-}
-
-.sidebar a:hover{
-
-  background:
-    rgba(255,255,255,0.8);
-
-}
-
-/* =====================================================
-APP
-===================================================== */
-
-.container{
-
-  max-width:650px;
-
-  margin:auto;
-
-  padding:100px 18px 40px;
-
-}
-
-/* =====================================================
-HERO
-===================================================== */
-
-.hero{
-/* =====================================================
-TIME FILTERS
-===================================================== */
-
-.time-filters{
-
-  display:flex;
-
-  gap:12px;
-
-  margin-top:24px;
-
-  overflow-x:auto;
-
-  padding-bottom:6px;
-
-}
-
-.time-filters::-webkit-scrollbar{
-  display:none;
-}
-
-.time-btn{
-
-  border:none;
-
-  padding:13px 18px;
-
-  border-radius:18px;
-
-  background:
-    rgba(255,255,255,0.7);
-
-  backdrop-filter:blur(18px);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.04);
-
-  font-weight:700;
+  padding:
+    max(20px, env(safe-area-inset-top))
+    18px
+    40px;
 
   color:var(--text);
 
-  cursor:pointer;
-
-  transition:0.25s ease;
-
-  white-space:nowrap;
-
 }
 
-.time-btn:hover{
-
-  transform:translateY(-2px);
-
+.container{
+  max-width:540px;
+  margin:auto;
 }
 
-.time-btn.active{
+/* =========================
+HEADER
+========================= */
+
+.hero{
+
+  position:relative;
+  overflow:hidden;
 
   background:
     linear-gradient(
       135deg,
-      #0A516D,
-      #146F91
+      #0A516D 0%,
+      #146F91 100%
     );
 
-  color:white;
+  border-radius:38px;
 
-  box-shadow:
-    0 14px 35px rgba(10,81,109,0.24);
-
-}
-
-.time-btn.custom{
-
-  background:
-    rgba(125,173,147,0.16);
-
-  color:#0A516D;
-
-}
-  background:
-    linear-gradient(
-      135deg,
-      #0A516D,
-      #146F91
-    );
-
-  color:white;
-
-  padding:36px;
-
-  border-radius:36px;
+  padding:34px;
 
   margin-bottom:24px;
 
+  color:white;
+
   box-shadow:
-    0 30px 80px rgba(10,81,109,0.24);
+    0 25px 70px rgba(10,81,109,0.28);
 
 }
 
-.hero h1{
+.hero::before{
 
-  font-size:34px;
+  content:'';
+
+  position:absolute;
+
+  width:220px;
+  height:220px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,0.08);
+
+  top:-80px;
+  right:-70px;
+
+}
+
+.hero::after{
+
+  content:'';
+
+  position:absolute;
+
+  width:150px;
+  height:150px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  bottom:-60px;
+  left:-30px;
+
+}
+
+.hero-title{
+
+  position:relative;
+  z-index:2;
+
+  font-size:36px;
   font-weight:800;
+
+  letter-spacing:-1.5px;
 
   margin-bottom:10px;
 
 }
 
-.hero p{
+.hero-subtitle{
 
-  opacity:0.92;
+  position:relative;
+  z-index:2;
+
+  opacity:0.9;
 
   line-height:1.6;
 
+  font-size:15px;
+
 }
 
-/* =====================================================
-SECTIONS
-===================================================== */
+/* =========================
+CARDS
+========================= */
 
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-/* =====================================================
-GLASS
-===================================================== */
-
-.glass{
+.glass-card{
 
   background:var(--glass);
 
-  backdrop-filter:blur(18px);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
 
   border:1px solid var(--border);
 
-  border-radius:30px;
+  border-radius:var(--radius);
 
   padding:24px;
 
   box-shadow:var(--shadow);
 
-  margin-bottom:20px;
-
 }
 
-/* =====================================================
-GRID
-===================================================== */
+.section-title{
 
-.grid{
+  font-size:20px;
+  font-weight:700;
 
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:16px;
-
-}
-
-@media(max-width:600px){
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
-/* =====================================================
-STAT CARDS
-===================================================== */
-
-.stat-card{
-
-  background:
-    rgba(255,255,255,0.76);
-
-  padding:24px;
-
-  border-radius:28px;
-
-  box-shadow:var(--shadow);
-
-}
-
-.stat-title{
-
-  font-size:13px;
-
-  color:#7D8891;
-
-  margin-bottom:12px;
-
-  font-weight:600;
-
-}
-
-.stat-value{
-
-  font-size:30px;
-
-  font-weight:800;
+  margin-bottom:22px;
 
   color:var(--blue);
 
 }
 
-/* =====================================================
-INPUTS
-===================================================== */
+/* =========================
+FIELDS
+========================= */
 
 .field{
   margin-bottom:18px;
@@ -441,10 +223,12 @@ label{
 
   display:block;
 
-  margin-bottom:10px;
-
   font-size:14px;
   font-weight:600;
+
+  margin-bottom:10px;
+
+  color:#2A4753;
 
 }
 
@@ -456,16 +240,18 @@ select{
   border:none;
   outline:none;
 
+  border-radius:22px;
+
   padding:18px;
 
-  border-radius:22px;
+  font-size:16px;
 
   background:
     rgba(255,255,255,0.78);
 
-  font-size:16px;
+  color:#1B1B1B;
 
-  transition:0.25s ease;
+  transition:all 0.25s ease;
 
 }
 
@@ -475,18 +261,18 @@ select:focus{
   transform:translateY(-2px);
 
   box-shadow:
-    0 10px 30px rgba(10,81,109,0.08);
+    0 10px 30px rgba(10,81,109,0.08),
+    inset 0 0 0 2px rgba(10,81,109,0.08);
 
 }
 
-/* =====================================================
+/* =========================
 BUTTONS
-===================================================== */
+========================= */
 
 .button-group{
 
   display:flex;
-
   gap:12px;
 
   margin-top:14px;
@@ -499,15 +285,16 @@ button{
 
   border:none;
 
-  border-radius:22px;
+  border-radius:24px;
 
   padding:18px;
 
+  font-size:15px;
   font-weight:700;
 
   cursor:pointer;
 
-  transition:0.2s ease;
+  transition:all 0.25s ease;
 
 }
 
@@ -515,16 +302,23 @@ button:hover{
   transform:translateY(-3px);
 }
 
+button:active{
+  transform:scale(0.98);
+}
+
 .primary-btn{
 
   background:
     linear-gradient(
       135deg,
-      #7DAD93,
-      #5E9A7B
+      #7DAD93 0%,
+      #5E9A7B 100%
     );
 
   color:white;
+
+  box-shadow:
+    0 12px 30px rgba(125,173,147,0.3);
 
 }
 
@@ -533,147 +327,208 @@ button:hover{
   background:
     linear-gradient(
       135deg,
-      #0A516D,
-      #146F91
+      #0A516D 0%,
+      #146F91 100%
     );
 
   color:white;
 
+  box-shadow:
+    0 12px 30px rgba(10,81,109,0.28);
+
 }
 
-/* =====================================================
+/* =========================
 RESULTS
-===================================================== */
+========================= */
+
+.results{
+
+  margin-top:26px;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:16px;
+
+}
 
 .result-card{
 
-  background:
-    rgba(255,255,255,0.74);
+  position:relative;
 
-  border-radius:28px;
+  overflow:hidden;
+
+  background:
+    rgba(255,255,255,0.72);
+
+  backdrop-filter:blur(18px);
+
+  border-radius:30px;
 
   padding:24px;
 
   box-shadow:var(--shadow);
 
-  margin-top:18px;
+  animation:
+    fadeUp 0.45s ease;
 
 }
 
-.result-item{
+.result-card::before{
 
-  display:flex;
+  content:'';
 
-  justify-content:space-between;
+  position:absolute;
 
-  padding:14px 0;
+  top:0;
+  left:0;
 
-  border-bottom:
-    1px solid rgba(0,0,0,0.05);
-
-}
-
-.result-item:last-child{
-  border:none;
-}
-
-/* =====================================================
-HISTORY
-===================================================== */
-
-.history-item{
-
-  padding:18px;
-
-  border-radius:22px;
+  width:100%;
+  height:4px;
 
   background:
-    rgba(255,255,255,0.72);
+    linear-gradient(
+      90deg,
+      var(--green),
+      var(--blue)
+    );
+
+}
+
+.result-label{
+
+  font-size:13px;
+
+  color:#73808A;
+
+  font-weight:600;
 
   margin-bottom:14px;
 
 }
 
-.history-top{
+.result-value{
 
-  display:flex;
-
-  justify-content:space-between;
-
-  margin-bottom:10px;
-
-}
-
-.history-product{
-
-  font-weight:700;
-
-}
-
-.history-profit{
-
-  color:var(--green);
-
+  font-size:32px;
   font-weight:800;
 
-}
+  letter-spacing:-1px;
 
-/* =====================================================
-FILTERS
-===================================================== */
-
-.filters{
-
-  display:flex;
-
-  gap:10px;
-
-  overflow:auto;
-
-  margin-bottom:20px;
+  color:var(--blue);
 
 }
 
-.filter-btn{
+.result-sub{
 
-  border:none;
+  margin-top:10px;
 
-  padding:12px 18px;
+  font-size:13px;
 
-  border-radius:999px;
-
-  background:white;
-
-  cursor:pointer;
-
-  font-weight:600;
-
-  box-shadow:var(--shadow);
+  color:#7D7D7D;
 
 }
-
-.filter-btn.active{
-
-  background:var(--blue);
-
-  color:white;
-
-}
-
-/* =====================================================
-COLORS
-===================================================== */
 
 .green{
-  color:var(--green);
+  color:var(--green)!important;
 }
 
 .orange{
-  color:var(--orange);
+  color:var(--orange)!important;
 }
 
 .red{
-  color:var(--red);
+  color:var(--red)!important;
+}
+
+/* =========================
+PRODUCT LIST
+========================= */
+
+.saved-products{
+
+  margin-top:20px;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+
+}
+
+.saved-chip{
+
+  background:
+    rgba(255,255,255,0.75);
+
+  border:1px solid rgba(0,0,0,0.04);
+
+  padding:12px 16px;
+
+  border-radius:999px;
+
+  font-size:13px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:all 0.2s ease;
+
+}
+
+.saved-chip:hover{
+
+  transform:translateY(-2px);
+
+  background:white;
+
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+
+  margin-top:28px;
+
+  text-align:center;
+
+  font-size:13px;
+
+  color:#8C8C8C;
+
+}
+
+/* =========================
+ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+@media(max-width:560px){
+
+  .results{
+    grid-template-columns:1fr;
+  }
+
+  .hero-title{
+    font-size:31px;
+  }
+
 }
 
 </style>
@@ -681,87 +536,268 @@ COLORS
 
 <body>
 
-<!-- =====================================================
-SIDEBAR BUTTON
-===================================================== -->
-
-<button
-  class="sidebar-btn"
-  onclick="toggleSidebar()"
->
-☰
-</button>
-
-<!-- =====================================================
-SIDEBAR
-===================================================== -->
-
-<div class="sidebar" id="sidebar">
-
-  <h2>
-    Zentario
-  </h2>
-
-  <a href="#" onclick="showPage('dashboardPage')">
-    Dashboard
-  </a>
-
-  <a href="#" onclick="showPage('calculatorPage')">
-    Calculadora
-  </a>
-
-  <a href="#" onclick="showPage('historyPage')">
-    Histórico
-  </a>
-
-  <a href="#" onclick="showPage('statsPage')">
-    Estadísticas
-  </a>
-
-</div>
-
-<!-- =====================================================
-APP
-===================================================== -->
-
 <div class="container">
-  
+
 <!-- =====================================================
-STORE BAR PREMIUM
+PEGAR JUSTO DEBAJO DE:
+<div class="container">
 ===================================================== -->
 
-<div class="store-bar">
+<!-- =========================
+TOPBAR PREMIUM
+========================= -->
 
-  <div class="store-selector">
+<div class="topbar">
+
+  <button
+    class="menu-btn"
+    onclick="toggleSidebar()"
+  >
+
+    <span></span>
+    <span></span>
+    <span></span>
+
+  </button>
+
+  <div class="topbar-right">
+
+    <div class="time-filters">
+
+      <button class="time-btn active">
+        7D
+      </button>
+
+      <button class="time-btn">
+        30D
+      </button>
+
+      <button class="time-btn">
+        3M
+      </button>
+
+    </div>
 
     <button
       class="store-btn"
       onclick="toggleStoreMenu()"
     >
 
-      <span id="currentStoreName">
+      <span id="currentStore">
         ZentarioShop
-      </span>
-
-      <span class="store-arrow">
-        ⌄
       </span>
 
     </button>
 
-    <div
-      class="store-menu"
-      id="storeMenu"
+  </div>
+
+</div>
+
+<!-- =========================
+STORE MENU
+========================= -->
+
+<div
+  class="store-menu"
+  id="storeMenu"
+>
+
+  <div id="storeList"></div>
+
+  <button
+    class="new-store-btn"
+    onclick="openStoreModal()"
+  >
+    Nueva tienda
+  </button>
+
+</div>
+
+<!-- =========================
+SIDEBAR
+========================= -->
+
+<div
+  class="sidebar-overlay"
+  id="sidebarOverlay"
+  onclick="closeSidebar()"
+></div>
+
+<div
+  class="sidebar"
+  id="sidebar"
+>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-logo">
+      Z
+    </div>
+
+    <div>
+
+      <div class="sidebar-title">
+        Zentario
+      </div>
+
+      <div class="sidebar-subtitle">
+        Profit System
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="sidebar-nav">
+
+    <button
+      class="sidebar-link active"
+      onclick="showPage('calculatorPage',this)"
     >
+      Calculadora
+    </button>
 
-      <div id="storeList"></div>
+    <button
+      class="sidebar-link"
+      onclick="showPage('historyPage',this)"
+    >
+      Histórico
+    </button>
 
-      <button
-        class="new-store-btn"
-        onclick="openStoreModal()"
-      >
-        Nueva tienda
-      </button>
+    <button
+      class="sidebar-link"
+      onclick="showPage('statsPage',this)"
+    >
+      Estadísticas
+    </button>
+
+    <button
+      class="sidebar-link"
+      onclick="showPage('calendarPage',this)"
+    >
+      Calendario
+    </button>
+
+  </div>
+
+</div>
+
+<!-- =====================================================
+PEGAR JUSTO ANTES DE:
+<!-- HERO -->
+===================================================== -->
+
+<div
+  class="page active"
+  id="calculatorPage"
+>
+
+<!-- =====================================================
+PEGAR JUSTO DESPUÉS DEL FOOTER
+===================================================== -->
+
+</div>
+
+<!-- =========================
+HISTORY PAGE
+========================= -->
+
+<div
+  class="page"
+  id="historyPage"
+>
+
+  <div class="glass-card">
+
+    <div class="section-title">
+      Histórico
+    </div>
+
+    <div
+      class="history-list"
+      id="historyList"
+    ></div>
+
+  </div>
+
+</div>
+
+<!-- =========================
+STATS PAGE
+========================= -->
+
+<div
+  class="page"
+  id="statsPage"
+>
+
+  <div class="glass-card">
+
+    <div class="section-title">
+      Estadísticas
+    </div>
+
+    <div class="stats-grid">
+
+      <div class="stats-card">
+
+        <div class="stats-label">
+          Facturación Total
+        </div>
+
+        <div
+          class="stats-value"
+          id="statsFacturacion"
+        >
+          0€
+        </div>
+
+      </div>
+
+      <div class="stats-card">
+
+        <div class="stats-label">
+          Beneficio Total
+        </div>
+
+        <div
+          class="stats-value"
+          id="statsBeneficio"
+        >
+          0€
+        </div>
+
+      </div>
+
+      <div class="stats-card">
+
+        <div class="stats-label">
+          Margen Medio
+        </div>
+
+        <div
+          class="stats-value"
+          id="statsMargen"
+        >
+          0%
+        </div>
+
+      </div>
+
+      <div class="stats-card">
+
+        <div class="stats-label">
+          Productos
+        </div>
+
+        <div
+          class="stats-value"
+          id="statsProductos"
+        >
+          0
+        </div>
+
+      </div>
 
     </div>
 
@@ -769,9 +805,35 @@ STORE BAR PREMIUM
 
 </div>
 
-<!-- =====================================================
+<!-- =========================
+CALENDAR PAGE
+========================= -->
+
+<div
+  class="page"
+  id="calendarPage"
+>
+
+  <div class="glass-card">
+
+    <div class="section-title">
+      Calendario
+    </div>
+
+    <div class="calendar-placeholder">
+
+      Próximamente:
+      histórico visual premium
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =========================
 STORE MODAL
-===================================================== -->
+========================= -->
 
 <div
   class="modal-overlay"
@@ -780,9 +842,9 @@ STORE MODAL
 
   <div class="modal-box">
 
-    <h3>
+    <div class="modal-title">
       Nueva tienda
-    </h3>
+    </div>
 
     <input
       type="text"
@@ -811,450 +873,504 @@ STORE MODAL
   </div>
 
 </div>
-  
-  <!-- =====================================================
-  DASHBOARD
-  ===================================================== -->
 
-  <section
-    class="page active"
-    id="dashboardPage"
-  >
-
-    <div class="hero">
 <!-- =====================================================
-TIME FILTERS
+PEGAR JUSTO ANTES DE:
+</style>
 ===================================================== -->
 
-<div class="time-filters">
-
-  <button
-    class="time-btn active"
-  >
-    7D
-  </button>
+<style>
 
-  <button
-    class="time-btn"
-  >
-    30D
-  </button>
+.topbar{
 
-  <button
-    class="time-btn"
-  >
-    3M
-  </button>
+  display:flex;
 
-  <button
-    class="time-btn custom"
-  >
-    Custom
-  </button>
+  justify-content:space-between;
 
-</div>
-      
-      <h1>
-        Zentario Profit
-      </h1>
+  align-items:center;
 
-      <p>
-        Dashboard inteligente para Ecommerce COD
-      </p>
+  margin-bottom:22px;
 
-    </div>
+}
 
-    <div class="grid">
+.topbar-right{
 
-      <div class="stat-card">
+  display:flex;
 
-        <div class="stat-title">
-          Facturación Total
-        </div>
+  align-items:center;
 
-        <div
-          class="stat-value"
-          id="dashboardFacturacion"
-        >
-          0€
-        </div>
+  gap:12px;
 
-      </div>
+}
 
-      <div class="stat-card">
+.menu-btn{
 
-        <div class="stat-title">
-          Beneficio Neto
-        </div>
+  width:58px;
+  height:58px;
 
-        <div
-          class="stat-value"
-          id="dashboardBeneficio"
-        >
-          0€
-        </div>
+  border:none;
 
-      </div>
+  border-radius:22px;
 
-      <div class="stat-card">
+  background:
+    rgba(255,255,255,0.72);
 
-        <div class="stat-title">
-          CPA Medio
-        </div>
+  backdrop-filter:blur(20px);
 
-        <div
-          class="stat-value"
-          id="dashboardCPA"
-        >
-          0€
-        </div>
+  box-shadow:var(--shadow);
 
-      </div>
+  display:flex;
 
-      <div class="stat-card">
+  flex-direction:column;
 
-        <div class="stat-title">
-          Margen Medio
-        </div>
+  align-items:center;
 
-        <div
-          class="stat-value"
-          id="dashboardMargen"
-        >
-          0%
-        </div>
+  justify-content:center;
 
-      </div>
+  gap:5px;
 
-    </div>
+  cursor:pointer;
 
-  </section>
+}
 
-  <!-- =====================================================
-  CALCULATOR
-  ===================================================== -->
+.menu-btn span{
 
-  <section
-    class="page"
-    id="calculatorPage"
-  >
+  width:22px;
+  height:2px;
 
-    <div class="hero">
+  border-radius:999px;
 
-      <h1>
-        Calculadora
-      </h1>
+  background:var(--text);
 
-      <p>
-        Calcula beneficios reales COD
-      </p>
+}
 
-    </div>
+.time-filters{
 
-    <div class="glass">
+  display:flex;
 
-      <div class="field">
+  gap:10px;
 
-        <label>
-          Productos guardados
-        </label>
+}
 
-        <select
-          id="savedProducts"
-          onchange="loadProduct()"
-        >
+.time-btn{
 
-          <option value="">
-            Selecciona un producto
-          </option>
+  border:none;
 
-        </select>
+  border-radius:18px;
 
-      </div>
+  padding:14px 18px;
 
-      <div class="field">
+  background:
+    rgba(255,255,255,0.72);
 
-        <label>
-          Nombre producto
-        </label>
+  font-weight:700;
 
-        <input
-          type="text"
-          id="nombre"
-        >
+  color:var(--text);
 
-      </div>
+}
 
-      <div class="field">
+.time-btn.active{
 
-        <label>
-          Precio normal (€)
-        </label>
+  background:
+    linear-gradient(
+      135deg,
+      #0A516D,
+      #146F91
+    );
 
-        <input
-          type="number"
-          step="0.01"
-          id="precioNormal"
-        >
+  color:white;
 
-      </div>
+}
 
-      <div class="field">
+.store-btn{
 
-        <label>
-          Precio pack x2 (€)
-        </label>
+  border:none;
 
-        <input
-          type="number"
-          step="0.01"
-          id="precioPack"
-        >
+  border-radius:22px;
 
-      </div>
+  padding:18px 22px;
 
-      <div class="field">
+  background:
+    rgba(255,255,255,0.72);
 
-        <label>
-          Coste producto + IVA (€)
-        </label>
+  backdrop-filter:blur(20px);
 
-        <input
-          type="number"
-          step="0.01"
-          id="costeProducto"
-        >
+  box-shadow:var(--shadow);
 
-      </div>
+  font-weight:700;
 
-      <div class="field">
+  color:var(--text);
 
-        <label>
-          Coste envío (€)
-        </label>
+}
 
-        <input
-          type="number"
-          step="0.01"
-          value="7.20"
-          id="envio"
-        >
+.sidebar-overlay{
 
-      </div>
+  position:fixed;
 
-      <div class="field">
+  inset:0;
 
-        <label>
-          Gasto Ads (€)
-        </label>
+  background:
+    rgba(0,0,0,0.16);
 
-        <input
-          type="number"
-          step="0.01"
-          id="ads"
-        >
+  backdrop-filter:blur(8px);
 
-      </div>
+  opacity:0;
 
-      <div class="field">
+  pointer-events:none;
 
-        <label>
-          Ventas totales
-        </label>
+  transition:0.25s ease;
 
-        <input
-          type="number"
-          id="ventas"
-        >
+  z-index:2000;
 
-      </div>
+}
 
-      <div class="field">
+.sidebar-overlay.active{
 
-        <label>
-          Packs x2
-        </label>
+  opacity:1;
 
-        <input
-          type="number"
-          id="packs"
-        >
+  pointer-events:auto;
 
-      </div>
+}
 
-      <div class="button-group">
+.sidebar{
 
-        <button
-          class="secondary-btn"
-          onclick="saveProduct()"
-        >
-          Guardar producto
-        </button>
+  position:fixed;
 
-        <button
-          class="primary-btn"
-          onclick="calculate()"
-        >
-          Calcular
-        </button>
+  top:0;
+  left:-320px;
 
-      </div>
+  width:290px;
+  height:100vh;
 
-      <div
-        class="result-card"
-        id="results"
-      >
+  background:
+    rgba(255,255,255,0.78);
 
-        <div class="result-item">
+  backdrop-filter:blur(30px);
 
-          <span>
-            Facturación
-          </span>
+  padding:24px;
 
-          <strong id="facturacionResult">
-            0€
-          </strong>
+  transition:0.35s ease;
 
-        </div>
+  z-index:3000;
 
-        <div class="result-item">
+  box-shadow:
+    0 30px 90px rgba(0,0,0,0.08);
 
-          <span>
-            Productos Vendidos
-          </span>
+}
 
-          <strong id="productosResult">
-            0
-          </strong>
+.sidebar.active{
+  left:0;
+}
 
-        </div>
+.sidebar-header{
 
-        <div class="result-item">
+  display:flex;
 
-          <span>
-            CPA
-          </span>
+  align-items:center;
 
-          <strong id="cpaResult">
-            0€
-          </strong>
+  gap:16px;
 
-        </div>
+  margin-bottom:34px;
 
-        <div class="result-item">
+}
 
-          <span>
-            Beneficio Neto
-          </span>
+.sidebar-logo{
 
-          <strong id="beneficioResult">
-            0€
-          </strong>
+  width:58px;
+  height:58px;
 
-        </div>
+  border-radius:22px;
 
-        <div class="result-item">
+  background:
+    linear-gradient(
+      135deg,
+      #0A516D,
+      #146F91
+    );
 
-          <span>
-            Margen Neto
-          </span>
+  display:flex;
 
-          <strong id="margenResult">
-            0%
-          </strong>
+  align-items:center;
 
-        </div>
+  justify-content:center;
 
-      </div>
+  color:white;
 
-    </div>
+  font-size:22px;
 
-  </section>
+  font-weight:800;
 
-  <!-- =====================================================
-  HISTORY
-  ===================================================== -->
+}
 
-  <section
-    class="page"
-    id="historyPage"
-  >
+.sidebar-title{
 
-    <div class="hero">
+  font-size:22px;
 
-      <h1>
-        Histórico
-      </h1>
+  font-weight:800;
 
-      <p>
-        Revisa tus resultados por fechas
-      </p>
+  color:var(--blue);
 
-    </div>
+}
 
-    <div class="filters">
+.sidebar-subtitle{
 
-      <button class="filter-btn active">
-        7D
-      </button>
+  opacity:0.6;
 
-      <button class="filter-btn">
-        30D
-      </button>
+  margin-top:4px;
 
-      <button class="filter-btn">
-        3M
-      </button>
+}
 
-      <button class="filter-btn">
-        Custom
-      </button>
+.sidebar-nav{
 
-    </div>
+  display:flex;
 
-    <div
-      class="glass"
-      id="historyList"
-    ></div>
+  flex-direction:column;
 
-  </section>
+  gap:12px;
 
-  <!-- =====================================================
-  STATS
-  ===================================================== -->
+}
 
-  <section
-    class="page"
-    id="statsPage"
-  >
+.sidebar-link{
 
-    <div class="hero">
+  border:none;
 
-      <h1>
-        Estadísticas
-      </h1>
+  border-radius:22px;
 
-      <p>
-        Analiza tendencias y evolución
-      </p>
+  padding:18px;
 
-    </div>
+  text-align:left;
 
-    <div class="glass">
+  background:
+    rgba(255,255,255,0.72);
 
-      <canvas id="profitChart"></canvas>
+  font-weight:700;
 
-    </div>
+}
 
-  </section>
+.sidebar-link.active{
 
-</div>
+  background:
+    linear-gradient(
+      135deg,
+      #0A516D,
+      #146F91
+    );
+
+  color:white;
+
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.store-menu{
+
+  position:absolute;
+
+  top:90px;
+  right:0;
+
+  width:260px;
+
+  border-radius:28px;
+
+  padding:18px;
+
+  background:
+    rgba(255,255,255,0.82);
+
+  backdrop-filter:blur(24px);
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.1);
+
+  display:none;
+
+  z-index:2000;
+
+}
+
+.store-menu.active{
+  display:block;
+}
+
+.store-item{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:14px;
+
+  border-radius:18px;
+
+}
+
+.new-store-btn{
+
+  width:100%;
+
+  margin-top:12px;
+
+}
+
+.stats-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:16px;
+
+}
+
+.stats-card{
+
+  background:
+    rgba(255,255,255,0.72);
+
+  border-radius:24px;
+
+  padding:20px;
+
+}
+
+.stats-label{
+
+  font-size:13px;
+
+  opacity:0.6;
+
+  margin-bottom:10px;
+
+}
+
+.stats-value{
+
+  font-size:28px;
+
+  font-weight:800;
+
+  color:var(--blue);
+
+}
+
+.history-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+}
+
+.history-item{
+
+  background:
+    rgba(255,255,255,0.72);
+
+  border-radius:24px;
+
+  padding:20px;
+
+}
+
+.calendar-placeholder{
+
+  text-align:center;
+
+  padding:40px;
+
+  opacity:0.6;
+
+}
+
+.modal-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+    rgba(0,0,0,0.15);
+
+  backdrop-filter:blur(10px);
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index:4000;
+
+}
+
+.modal-overlay.active{
+  display:flex;
+}
+
+.modal-box{
+
+  width:90%;
+  max-width:400px;
+
+  border-radius:34px;
+
+  padding:30px;
+
+  background:
+    rgba(255,255,255,0.84);
+
+  backdrop-filter:blur(30px);
+
+}
+
+.modal-title{
+
+  font-size:28px;
+
+  font-weight:800;
+
+  color:var(--blue);
+
+  margin-bottom:20px;
+
+}
+
+.modal-buttons{
+
+  display:flex;
+
+  gap:12px;
+
+  margin-top:20px;
+
+}
+
+.modal-buttons button{
+
+  flex:1;
+
+}
+
+</style>
+
+<!-- =====================================================
+PEGAR JUSTO ANTES DE:
+</script>
+===================================================== -->
 
 <script>
-
-/* =====================================================
-SIDEBAR
-===================================================== */
 
 function toggleSidebar(){
 
@@ -1263,13 +1379,28 @@ function toggleSidebar(){
     .classList
     .toggle('active');
 
+  document
+    .getElementById('sidebarOverlay')
+    .classList
+    .toggle('active');
+
 }
 
-/* =====================================================
-SHOW PAGES
-===================================================== */
+function closeSidebar(){
 
-function showPage(pageId){
+  document
+    .getElementById('sidebar')
+    .classList
+    .remove('active');
+
+  document
+    .getElementById('sidebarOverlay')
+    .classList
+    .remove('active');
+
+}
+
+function showPage(id,btn){
 
   document
     .querySelectorAll('.page')
@@ -1280,20 +1411,480 @@ function showPage(pageId){
     });
 
   document
-    .getElementById(pageId)
+    .getElementById(id)
+    .classList.add('active');
+
+  document
+    .querySelectorAll('.sidebar-link')
+    .forEach(link=>{
+
+      link.classList.remove('active');
+
+    });
+
+  btn.classList.add('active');
+
+  closeSidebar();
+
+}
+
+/* =========================
+MULTI STORE
+========================= */
+
+let currentStore =
+  'ZentarioShop';
+
+function getStores(){
+
+  let stores =
+    JSON.parse(
+      localStorage.getItem(
+        'zentarioStores'
+      )
+    );
+
+  if(!stores){
+
+    stores = [
+      {
+        name:'ZentarioShop'
+      }
+    ];
+
+    localStorage.setItem(
+      'zentarioStores',
+      JSON.stringify(stores)
+    );
+
+  }
+
+  return stores;
+
+}
+
+function renderStores(){
+
+  const list =
+    document.getElementById('storeList');
+
+  list.innerHTML = '';
+
+  const stores =
+    getStores();
+
+  stores.forEach((store,index)=>{
+
+    list.innerHTML += `
+
+      <div class="store-item">
+
+        <div
+          onclick="selectStore('${store.name}')"
+        >
+          ${store.name}
+        </div>
+
+        <button
+          onclick="deleteStore(${index})"
+        >
+          −
+        </button>
+
+      </div>
+
+    `;
+
+  });
+
+}
+
+function toggleStoreMenu(){
+
+  document
+    .getElementById('storeMenu')
+    .classList
+    .toggle('active');
+
+}
+
+function selectStore(name){
+
+  currentStore = name;
+
+  document
+    .getElementById('currentStore')
+    .innerHTML = name;
+
+  toggleStoreMenu();
+
+}
+
+function openStoreModal(){
+
+  document
+    .getElementById('storeModal')
     .classList
     .add('active');
 
+}
+
+function closeStoreModal(){
+
   document
-    .getElementById('sidebar')
+    .getElementById('storeModal')
     .classList
     .remove('active');
 
 }
 
-/* =====================================================
-EURO
-===================================================== */
+function createStore(){
+
+  let stores =
+    getStores();
+
+  if(stores.length >= 6){
+
+    alert(
+      'Máximo 6 tiendas'
+    );
+
+    return;
+
+  }
+
+  const name =
+    document
+      .getElementById('storeInput')
+      .value
+      .trim();
+
+  if(!name) return;
+
+  stores.push({
+    name
+  });
+
+  localStorage.setItem(
+    'zentarioStores',
+    JSON.stringify(stores)
+  );
+
+  renderStores();
+
+  closeStoreModal();
+
+}
+
+function deleteStore(index){
+
+  let stores =
+    getStores();
+
+  if(stores.length <= 1){
+
+    alert(
+      'Debe existir una tienda'
+    );
+
+    return;
+
+  }
+
+  stores.splice(index,1);
+
+  localStorage.setItem(
+    'zentarioStores',
+    JSON.stringify(stores)
+  );
+
+  renderStores();
+
+}
+
+renderStores();
+
+</script>
+  
+  <!-- HERO -->
+
+  <div class="hero">
+
+    <div class="hero-title">
+      Zentario Profit
+    </div>
+
+    <div class="hero-subtitle">
+      Calculadora inteligente para Ecommerce COD
+    </div>
+
+  </div>
+
+  <!-- FORM -->
+
+  <div class="glass-card">
+
+    <div class="section-title">
+      Producto
+    </div>
+
+    <div class="field">
+
+      <label>
+        Productos guardados
+      </label>
+
+      <select
+        id="savedProducts"
+        onchange="loadProduct()"
+      >
+
+        <option value="">
+          Selecciona un producto
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Nombre del producto
+      </label>
+
+      <input
+        type="text"
+        id="nombre"
+        placeholder="Ej: CleanShoes™"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Precio producto normal (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="precioNormal"
+        placeholder="29.99"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Precio pack x2 (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="precioPack"
+        placeholder="39.99"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Coste producto + IVA (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="costeProducto"
+        placeholder="4.20"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Coste envío (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="envio"
+        value="7.20"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Gasto total Ads (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="ads"
+        placeholder="20"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Ventas totales
+      </label>
+
+      <input
+        type="number"
+        id="ventas"
+        placeholder="4"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Packs x2
+      </label>
+
+      <input
+        type="number"
+        id="packs"
+        placeholder="1"
+      >
+
+    </div>
+
+    <div class="button-group">
+
+      <button
+        class="secondary-btn"
+        onclick="saveProduct()"
+      >
+        Guardar producto
+      </button>
+
+      <button
+        class="primary-btn"
+        onclick="calculate()"
+      >
+        Calcular
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- RESULTS -->
+
+  <div class="results">
+
+    <div class="result-card">
+
+      <div class="result-label">
+        Facturación Total
+      </div>
+
+      <div
+        class="result-value"
+        id="facturacionResult"
+      >
+        0€
+      </div>
+
+    </div>
+
+    <div class="result-card">
+
+      <div class="result-label">
+        Productos Vendidos
+      </div>
+
+      <div
+        class="result-value"
+        id="productosResult"
+      >
+        0
+      </div>
+
+    </div>
+
+    <div class="result-card">
+
+      <div class="result-label">
+        CPA
+      </div>
+
+      <div
+        class="result-value"
+        id="cpaResult"
+      >
+        0€
+      </div>
+
+    </div>
+
+    <div class="result-card">
+
+      <div class="result-label">
+        Beneficio Neto
+      </div>
+
+      <div
+        class="result-value"
+        id="beneficioResult"
+      >
+        0€
+      </div>
+
+    </div>
+
+    <div
+      class="result-card"
+      style="grid-column:1/-1;"
+    >
+
+      <div class="result-label">
+        Margen Neto
+      </div>
+
+      <div
+        class="result-value"
+        id="margenResult"
+      >
+        0%
+      </div>
+
+      <div class="result-sub">
+        Verde = rentable ·
+        Naranja = revisar ·
+        Rojo = peligro
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    ZentarioShop • Profit System
+  </div>
+
+</div>
+
+<script>
+
+/* =========================
+UTILS
+========================= */
 
 function euro(value){
 
@@ -1307,14 +1898,215 @@ function euro(value){
 
 }
 
-/* =====================================================
+function animateValue(element, start, end, duration, isEuro=false, isPercent=false){
+
+  let startTimestamp = null;
+
+  const step = (timestamp)=>{
+
+    if(!startTimestamp)
+      startTimestamp = timestamp;
+
+    const progress =
+      Math.min(
+        (timestamp - startTimestamp) / duration,
+        1
+      );
+
+    const value =
+      progress * (end - start) + start;
+
+    if(isEuro){
+
+      element.innerHTML =
+        euro(value);
+
+    }
+    else if(isPercent){
+
+      element.innerHTML =
+        value.toFixed(2) + '%';
+
+    }
+    else{
+
+      element.innerHTML =
+        Math.floor(value);
+
+    }
+
+    if(progress < 1){
+
+      window.requestAnimationFrame(step);
+
+    }
+
+  };
+
+  window.requestAnimationFrame(step);
+
+}
+
+/* =========================
+CALCULATE
+========================= */
+
+function calculate(){
+
+  const precioNormal =
+    parseFloat(
+      document.getElementById('precioNormal').value
+    ) || 0;
+
+  const precioPack =
+    parseFloat(
+      document.getElementById('precioPack').value
+    ) || 0;
+
+  const costeProducto =
+    parseFloat(
+      document.getElementById('costeProducto').value
+    ) || 0;
+
+  const envio =
+    parseFloat(
+      document.getElementById('envio').value
+    ) || 0;
+
+  const ads =
+    parseFloat(
+      document.getElementById('ads').value
+    ) || 0;
+
+  const ventasTotales =
+    parseInt(
+      document.getElementById('ventas').value
+    ) || 0;
+
+  const packs =
+    parseInt(
+      document.getElementById('packs').value
+    ) || 0;
+
+  // =========================
+  // LOGIC
+  // =========================
+
+  const ventasNormales =
+    ventasTotales - packs;
+
+  const productosVendidos =
+    ventasNormales + (packs * 2);
+
+  const facturacion =
+    (ventasNormales * precioNormal)
+    +
+    (packs * precioPack);
+
+  const costeProductos =
+    productosVendidos * costeProducto;
+
+  const costeEnvios =
+    ventasTotales * envio;
+
+  const cpa =
+    ventasTotales > 0
+    ? ads / ventasTotales
+    : 0;
+
+  const beneficio =
+    facturacion
+    -
+    costeProductos
+    -
+    costeEnvios
+    -
+    ads;
+
+  const margen =
+    facturacion > 0
+    ? (beneficio / facturacion) * 100
+    : 0;
+
+  // =========================
+  // RENDER
+  // =========================
+
+  animateValue(
+    document.getElementById('facturacionResult'),
+    0,
+    facturacion,
+    900,
+    true
+  );
+
+  animateValue(
+    document.getElementById('productosResult'),
+    0,
+    productosVendidos,
+    700
+  );
+
+  animateValue(
+    document.getElementById('cpaResult'),
+    0,
+    cpa,
+    700,
+    true
+  );
+
+  animateValue(
+    document.getElementById('beneficioResult'),
+    0,
+    beneficio,
+    900,
+    true
+  );
+
+  const margenEl =
+    document.getElementById('margenResult');
+
+  margenEl.classList.remove(
+    'green',
+    'orange',
+    'red'
+  );
+
+  if(margen >= 25){
+
+    margenEl.classList.add('green');
+
+  }
+  else if(margen >= 15){
+
+    margenEl.classList.add('orange');
+
+  }
+  else{
+
+    margenEl.classList.add('red');
+
+  }
+
+  animateValue(
+    margenEl,
+    0,
+    margen,
+    900,
+    false,
+    true
+  );
+
+}
+
+/* =========================
 SAVE PRODUCTS
-===================================================== */
+========================= */
 
 function saveProduct(){
 
   const nombre =
-    document.getElementById('nombre').value;
+    document.getElementById('nombre').value.trim();
 
   const precioNormal =
     document.getElementById('precioNormal').value;
@@ -1328,7 +2120,7 @@ function saveProduct(){
   if(!nombre){
 
     alert(
-      'Introduce un nombre'
+      'Introduce un nombre de producto'
     );
 
     return;
@@ -1349,7 +2141,21 @@ function saveProduct(){
 
   };
 
-  products.push(product);
+  const existing =
+    products.findIndex(
+      p => p.nombre === nombre
+    );
+
+  if(existing !== -1){
+
+    products[existing] = product;
+
+  }
+  else{
+
+    products.push(product);
+
+  }
 
   localStorage.setItem(
     'zentarioProducts',
@@ -1359,14 +2165,14 @@ function saveProduct(){
   loadProducts();
 
   alert(
-    'Producto guardado'
+    'Producto guardado correctamente'
   );
 
 }
 
-/* =====================================================
+/* =========================
 LOAD PRODUCTS
-===================================================== */
+========================= */
 
 function loadProducts(){
 
@@ -1397,11 +2203,9 @@ function loadProducts(){
 
 }
 
-loadProducts();
-
-/* =====================================================
-LOAD PRODUCT
-===================================================== */
+/* =========================
+LOAD SINGLE PRODUCT
+========================= */
 
 function loadProduct(){
 
@@ -1435,703 +2239,13 @@ function loadProduct(){
 
 }
 
-/* =====================================================
-CALCULATE
-===================================================== */
+/* =========================
+INIT
+========================= */
 
-function calculate(){
+loadProducts();
 
-  const precioNormal =
-    parseFloat(
-      document.getElementById('precioNormal').value
-    ) || 0;
-
-  const precioPack =
-    parseFloat(
-      document.getElementById('precioPack').value
-    ) || 0;
-
-  const costeProducto =
-    parseFloat(
-      document.getElementById('costeProducto').value
-    ) || 0;
-
-  const envio =
-    parseFloat(
-      document.getElementById('envio').value
-    ) || 0;
-
-  const ads =
-    parseFloat(
-      document.getElementById('ads').value
-    ) || 0;
-
-  const ventas =
-    parseInt(
-      document.getElementById('ventas').value
-    ) || 0;
-
-  const packs =
-    parseInt(
-      document.getElementById('packs').value
-    ) || 0;
-
-  const ventasNormales =
-    ventas - packs;
-
-  const productosVendidos =
-    ventasNormales + (packs * 2);
-
-  const facturacion =
-    (ventasNormales * precioNormal)
-    +
-    (packs * precioPack);
-
-  const costeProductos =
-    productosVendidos * costeProducto;
-
-  const costeEnvios =
-    ventas * envio;
-
-  const cpa =
-    ventas > 0
-    ? ads / ventas
-    : 0;
-
-  const beneficio =
-    facturacion
-    -
-    costeProductos
-    -
-    costeEnvios
-    -
-    ads;
-
-  const margen =
-    facturacion > 0
-    ? (beneficio / facturacion) * 100
-    : 0;
-
-  document.getElementById('facturacionResult').innerHTML =
-    euro(facturacion);
-
-  document.getElementById('productosResult').innerHTML =
-    productosVendidos;
-
-  document.getElementById('cpaResult').innerHTML =
-    euro(cpa);
-
-  document.getElementById('beneficioResult').innerHTML =
-    euro(beneficio);
-
-  const margenEl =
-    document.getElementById('margenResult');
-
-  margenEl.innerHTML =
-    margen.toFixed(2) + '%';
-
-  margenEl.classList.remove(
-    'green',
-    'orange',
-    'red'
-  );
-
-  if(margen >= 25){
-
-    margenEl.classList.add('green');
-
-  }
-  else if(margen >= 15){
-
-    margenEl.classList.add('orange');
-
-  }
-  else{
-
-    margenEl.classList.add('red');
-
-  }
-
-  saveHistory({
-
-    producto:
-      document.getElementById('nombre').value,
-
-    beneficio,
-    ventas,
-    packs,
-    facturacion,
-    margen,
-    cpa,
-
-    fecha:
-      new Date().toLocaleDateString()
-
-  });
-
-  updateDashboard();
-
-  renderHistory();
-
-}
-
-/* =====================================================
-SAVE HISTORY
-===================================================== */
-
-function saveHistory(data){
-
-  let history =
-    JSON.parse(
-      localStorage.getItem('zentarioHistory')
-    ) || [];
-
-  history.unshift(data);
-
-  localStorage.setItem(
-    'zentarioHistory',
-    JSON.stringify(history)
-  );
-
-}
-
-/* =====================================================
-RENDER HISTORY
-===================================================== */
-
-function renderHistory(){
-
-  const historyList =
-    document.getElementById('historyList');
-
-  let history =
-    JSON.parse(
-      localStorage.getItem('zentarioHistory')
-    ) || [];
-
-  historyList.innerHTML = '';
-
-  history.forEach(item=>{
-
-    historyList.innerHTML += `
-
-      <div class="history-item">
-
-        <div class="history-top">
-
-          <div class="history-product">
-            ${item.producto}
-          </div>
-
-          <div class="history-profit">
-            +${item.beneficio.toFixed(2)}€
-          </div>
-
-        </div>
-
-        <div>
-          ${item.ventas} ventas ·
-          ${item.packs} packs ·
-          ${item.fecha}
-        </div>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-renderHistory();
-
-/* =====================================================
-DASHBOARD
-===================================================== */
-
-function updateDashboard(){
-
-  let history =
-    JSON.parse(
-      localStorage.getItem('zentarioHistory')
-    ) || [];
-
-  let facturacion = 0;
-  let beneficio = 0;
-  let cpa = 0;
-  let margen = 0;
-
-  history.forEach(item=>{
-
-    facturacion += item.facturacion;
-    beneficio += item.beneficio;
-    cpa += item.cpa;
-    margen += item.margen;
-
-  });
-
-  const total =
-    history.length || 1;
-
-  document.getElementById('dashboardFacturacion').innerHTML =
-    euro(facturacion);
-
-  document.getElementById('dashboardBeneficio').innerHTML =
-    euro(beneficio);
-
-  document.getElementById('dashboardCPA').innerHTML =
-    euro(cpa / total);
-
-  document.getElementById('dashboardMargen').innerHTML =
-    (margen / total).toFixed(1) + '%';
-
-}
-
-updateDashboard();
-
-/* =====================================================
-CHART
-===================================================== */
-
-new Chart(
-
-  document.getElementById('profitChart'),
-
-  {
-
-    type:'line',
-
-    data:{
-
-      labels:[
-        'L',
-        'M',
-        'X',
-        'J',
-        'V',
-        'S',
-        'D'
-      ],
-
-      datasets:[{
-
-        label:'Beneficio',
-
-        data:[
-          40,
-          90,
-          55,
-          120,
-          100,
-          160,
-          190
-        ],
-
-        tension:0.4,
-
-        borderWidth:4,
-
-      }]
-
-    },
-
-    options:{
-
-      responsive:true,
-
-      plugins:{
-
-        legend:{
-          display:false
-        }
-
-      }
-
-    }
-
-  }
-
-);
-/* =====================================================
-APPLE STORE SYSTEM
-===================================================== */
-
-.store-bar{
-
-  display:flex;
-
-  justify-content:flex-end;
-
-  margin-bottom:32px;
-
-}
-
-.store-selector{
-  position:relative;
-}
-
-.store-btn{
-
-  height:58px;
-
-  padding:
-    0 22px;
-
-  border:none;
-
-  border-radius:22px;
-
-  background:
-    rgba(255,255,255,0.72);
-
-  backdrop-filter:
-    blur(22px);
-
-  box-shadow:
-    0 12px 40px rgba(10,81,109,0.08);
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-  font-size:16px;
-
-  font-weight:700;
-
-  color:#15313C;
-
-  cursor:pointer;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-
-}
-
-.store-btn:hover{
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 18px 50px rgba(10,81,109,0.12);
-
-}
-
-.store-arrow{
-
-  font-size:12px;
-
-  opacity:0.5;
-
-}
-
-.store-menu{
-
-  position:absolute;
-
-  top:74px;
-  right:0;
-
-  width:280px;
-
-  padding:18px;
-
-  border-radius:30px;
-
-  background:
-    rgba(255,255,255,0.74);
-
-  backdrop-filter:
-    blur(28px);
-
-  box-shadow:
-    0 35px 80px rgba(0,0,0,0.10);
-
-  border:
-    1px solid rgba(255,255,255,0.45);
-
-  display:none;
-
-  z-index:1000;
-
-}
-
-.store-menu.active{
-  display:block;
-}
-
-.store-item{
-
-  height:58px;
-
-  padding:
-    0 16px;
-
-  border-radius:20px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  transition:0.2s ease;
-
-}
-
-.store-item:hover{
-
-  background:
-    rgba(255,255,255,0.58);
-
-}
-
-.store-name{
-
-  font-weight:650;
-
-  font-size:15px;
-
-  letter-spacing:-0.2px;
-
-  cursor:pointer;
-
-}
-
-.store-actions{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-}
-
-.store-icon-btn{
-
-  width:34px;
-  height:34px;
-
-  border:none;
-
-  border-radius:12px;
-
-  background:
-    rgba(255,255,255,0.78);
-
-  backdrop-filter:
-    blur(10px);
-
-  font-size:14px;
-
-  cursor:pointer;
-
-  transition:0.2s ease;
-
-}
-
-.store-icon-btn:hover{
-
-  transform:scale(1.05);
-
-}
-
-.new-store-btn{
-
-  width:100%;
-
-  height:56px;
-
-  border:none;
-
-  border-radius:20px;
-
-  margin-top:14px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #0A516D,
-      #146F91
-    );
-
-  color:white;
-
-  font-size:15px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-  transition:0.25s ease;
-
-  box-shadow:
-    0 14px 40px rgba(10,81,109,0.22);
-
-}
-
-.new-store-btn:hover{
-
-  transform:
-    translateY(-2px);
-
-}
-
-/* =====================================================
-MODAL APPLE
-===================================================== */
-
-.modal-overlay{
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-    rgba(12,18,24,0.18);
-
-  backdrop-filter:
-    blur(18px);
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  z-index:3000;
-
-}
-
-.modal-overlay.active{
-  display:flex;
-}
-
-.modal-box{
-
-  width:90%;
-
-  max-width:420px;
-
-  padding:32px;
-
-  border-radius:34px;
-
-  background:
-    rgba(255,255,255,0.76);
-
-  backdrop-filter:
-    blur(30px);
-
-  box-shadow:
-    0 40px 100px rgba(0,0,0,0.14);
-
-  border:
-    1px solid rgba(255,255,255,0.48);
-
-}
-
-.modal-box h3{
-
-  font-size:28px;
-
-  font-weight:800;
-
-  letter-spacing:-1px;
-
-  color:#15313C;
-
-  margin-bottom:24px;
-
-}
-
-.modal-box input{
-
-  width:100%;
-
-  height:62px;
-
-  border:none;
-
-  outline:none;
-
-  border-radius:22px;
-
-  padding:
-    0 20px;
-
-  background:
-    rgba(255,255,255,0.72);
-
-  backdrop-filter:
-    blur(12px);
-
-  font-size:16px;
-
-  color:#15313C;
-
-  box-shadow:
-    inset 0 2px 6px rgba(0,0,0,0.03);
-
-}
-
-.modal-buttons{
-
-  display:flex;
-
-  gap:14px;
-
-  margin-top:22px;
-
-}
-
-.modal-buttons button{
-
-  flex:1;
-
-  height:56px;
-
-  border:none;
-
-  border-radius:20px;
-
-  font-size:15px;
-
-  font-weight:700;
-
-  cursor:pointer;
-
-}
-
-.modal-cancel{
-
-  background:
-    rgba(255,255,255,0.72);
-
-  color:#15313C;
-
-}
-
-.modal-create{
-
-  background:
-    linear-gradient(
-      135deg,
-      #0A516D,
-      #146F91
-    );
-
-  color:white;
-
-  box-shadow:
-    0 18px 45px rgba(10,81,109,0.22);
-
-}
 </script>
+
 </body>
 </html>
-<!-- redeploy -->
