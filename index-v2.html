@@ -531,6 +531,410 @@ ANIMATIONS
 
 }
 
+<!-- =========================
+ZENTARIO PROFIT V1.5
+MULTI STORE EDITION
+========================= -->
+
+<script>
+
+/* =========================
+MULTI STORE SYSTEM
+========================= */
+
+let zentarioData =
+  JSON.parse(localStorage.getItem('zentarioData'))
+  ||
+{
+  activeStore:'Mi Tienda',
+
+  stores:{
+    'Mi Tienda':{
+      productos:[],
+      historico:[],
+      stats:{}
+    }
+  }
+};
+
+/* =========================
+SAVE DATA
+========================= */
+
+function saveData(){
+
+  localStorage.setItem(
+    'zentarioData',
+    JSON.stringify(zentarioData)
+  );
+
+}
+
+/* =========================
+GET ACTIVE STORE
+========================= */
+
+function getStore(){
+
+  return zentarioData
+    .stores[
+      zentarioData.activeStore
+    ];
+
+}
+
+/* =========================
+CREATE STORE
+========================= */
+
+function createStore(){
+
+  const name =
+    prompt('Nombre de la tienda');
+
+  if(!name) return;
+
+  if(zentarioData.stores[name]){
+
+    alert('Esa tienda ya existe');
+    return;
+
+  }
+
+  zentarioData.stores[name] = {
+
+    productos:[],
+    historico:[],
+    stats:{}
+
+  };
+
+  zentarioData.activeStore = name;
+
+  saveData();
+
+  renderStores();
+
+  loadProducts();
+
+  updateStoreTitle();
+
+}
+
+/* =========================
+SWITCH STORE
+========================= */
+
+function switchStore(name){
+
+  zentarioData.activeStore = name;
+
+  saveData();
+
+  renderStores();
+
+  loadProducts();
+
+  updateStoreTitle();
+
+}
+
+/* =========================
+RENDER STORES
+========================= */
+
+function renderStores(){
+
+  const storesContainer =
+    document.getElementById('storesList');
+
+  storesContainer.innerHTML = '';
+
+  Object.keys(
+    zentarioData.stores
+  ).forEach(storeName=>{
+
+    const div =
+      document.createElement('div');
+
+    div.className = 'store-item';
+
+    if(
+      storeName ===
+      zentarioData.activeStore
+    ){
+      div.classList.add('active-store');
+    }
+
+    div.innerHTML = `
+      ${storeName}
+    `;
+
+    div.onclick = ()=>{
+
+      switchStore(storeName);
+
+    };
+
+    storesContainer.appendChild(div);
+
+  });
+
+}
+
+/* =========================
+UPDATE STORE TITLE
+========================= */
+
+function updateStoreTitle(){
+
+  document.getElementById(
+    'activeStoreName'
+  ).innerHTML =
+    zentarioData.activeStore;
+
+}
+
+/* =========================
+SAVE PRODUCT
+========================= */
+
+function saveProduct(){
+
+  const nombre =
+    document.getElementById('nombre')
+    .value.trim();
+
+  const precioNormal =
+    document.getElementById('precioNormal')
+    .value;
+
+  const precioPack =
+    document.getElementById('precioPack')
+    .value;
+
+  const costeProducto =
+    document.getElementById('costeProducto')
+    .value;
+
+  if(!nombre){
+
+    alert('Introduce un nombre');
+    return;
+
+  }
+
+  const store = getStore();
+
+  const product = {
+
+    nombre,
+    precioNormal,
+    precioPack,
+    costeProducto
+
+  };
+
+  const existing =
+    store.productos.findIndex(
+      p => p.nombre === nombre
+    );
+
+  if(existing !== -1){
+
+    store.productos[existing] = product;
+
+  }
+  else{
+
+    store.productos.push(product);
+
+  }
+
+  saveData();
+
+  loadProducts();
+
+  alert('Producto guardado');
+
+}
+
+/* =========================
+LOAD PRODUCTS
+========================= */
+
+function loadProducts(){
+
+  const selector =
+    document.getElementById(
+      'savedProducts'
+    );
+
+  selector.innerHTML =
+    '<option value="">Selecciona un producto</option>';
+
+  const store = getStore();
+
+  store.productos.forEach(
+    (product,index)=>{
+
+      const option =
+        document.createElement('option');
+
+      option.value = index;
+
+      option.textContent =
+        product.nombre;
+
+      selector.appendChild(option);
+
+    }
+
+  );
+
+}
+
+/* =========================
+LOAD PRODUCT
+========================= */
+
+function loadProduct(){
+
+  const selector =
+    document.getElementById(
+      'savedProducts'
+    );
+
+  const index =
+    selector.value;
+
+  if(index === '') return;
+
+  const store = getStore();
+
+  const product =
+    store.productos[index];
+
+  document.getElementById('nombre')
+    .value = product.nombre;
+
+  document.getElementById('precioNormal')
+    .value = product.precioNormal;
+
+  document.getElementById('precioPack')
+    .value = product.precioPack;
+
+  document.getElementById('costeProducto')
+    .value = product.costeProducto;
+
+}
+
+/* =========================
+INIT
+========================= */
+
+renderStores();
+
+loadProducts();
+
+updateStoreTitle();
+
+</script>
+
+<!-- =========================
+SIDEBAR STORES HTML
+PONLO EN EL SIDEBAR
+========================= -->
+
+<div class="sidebar-section">
+
+  <div class="sidebar-title">
+    TIENDAS
+  </div>
+
+  <div id="storesList">
+  </div>
+
+  <button onclick="createStore()">
+    + Añadir tienda
+  </button>
+
+</div>
+
+<!-- =========================
+STORE TITLE
+PONLO ARRIBA DEL DASHBOARD
+========================= -->
+
+<div id="activeStoreName">
+  Mi Tienda
+</div>
+
+<!-- =========================
+CSS EXTRA
+========================= -->
+
+<style>
+
+.store-item{
+
+  padding:14px 18px;
+
+  border-radius:18px;
+
+  margin-bottom:10px;
+
+  background:
+    rgba(255,255,255,0.6);
+
+  cursor:pointer;
+
+  transition:0.25s;
+
+  font-weight:600;
+
+}
+
+.store-item:hover{
+
+  transform:translateX(4px);
+
+}
+
+.active-store{
+
+  background:
+    linear-gradient(
+      135deg,
+      #7DAD93,
+      #5E9A7B
+    );
+
+  color:white;
+
+  box-shadow:
+    0 10px 25px
+    rgba(125,173,147,0.25);
+
+}
+
+.sidebar-title{
+
+  font-size:13px;
+
+  font-weight:700;
+
+  opacity:0.7;
+
+  margin-bottom:14px;
+
+  letter-spacing:1px;
+
+}
+
+</style>
+  
+  
 </style>
 </head>
 
@@ -538,1074 +942,6 @@ ANIMATIONS
 
 <div class="container">
 
-<!-- =====================================================
-PEGAR JUSTO DEBAJO DE:
-<div class="container">
-===================================================== -->
-
-<!-- =========================
-TOPBAR PREMIUM
-========================= -->
-
-<div class="topbar">
-
-  <button
-    class="menu-btn"
-    onclick="toggleSidebar()"
-  >
-
-    <span></span>
-    <span></span>
-    <span></span>
-
-  </button>
-
-  <div class="topbar-right">
-
-    <div class="time-filters">
-
-      <button class="time-btn active">
-        7D
-      </button>
-
-      <button class="time-btn">
-        30D
-      </button>
-
-      <button class="time-btn">
-        3M
-      </button>
-
-    </div>
-
-    <button
-      class="store-btn"
-      onclick="toggleStoreMenu()"
-    >
-
-      <span id="currentStore">
-        ZentarioShop
-      </span>
-
-    </button>
-
-  </div>
-
-</div>
-
-<!-- =========================
-STORE MENU
-========================= -->
-
-<div
-  class="store-menu"
-  id="storeMenu"
->
-
-  <div id="storeList"></div>
-
-  <button
-    class="new-store-btn"
-    onclick="openStoreModal()"
-  >
-    Nueva tienda
-  </button>
-
-</div>
-
-<!-- =========================
-SIDEBAR
-========================= -->
-
-<div
-  class="sidebar-overlay"
-  id="sidebarOverlay"
-  onclick="closeSidebar()"
-></div>
-
-<div
-  class="sidebar"
-  id="sidebar"
->
-
-  <div class="sidebar-header">
-
-    <div class="sidebar-logo">
-      Z
-    </div>
-
-    <div>
-
-      <div class="sidebar-title">
-        Zentario
-      </div>
-
-      <div class="sidebar-subtitle">
-        Profit System
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="sidebar-nav">
-
-    <button
-      class="sidebar-link active"
-      onclick="showPage('calculatorPage',this)"
-    >
-      Calculadora
-    </button>
-
-    <button
-      class="sidebar-link"
-      onclick="showPage('historyPage',this)"
-    >
-      Histórico
-    </button>
-
-    <button
-      class="sidebar-link"
-      onclick="showPage('statsPage',this)"
-    >
-      Estadísticas
-    </button>
-
-    <button
-      class="sidebar-link"
-      onclick="showPage('calendarPage',this)"
-    >
-      Calendario
-    </button>
-
-  </div>
-
-</div>
-
-<!-- =====================================================
-PEGAR JUSTO ANTES DE:
-<!-- HERO -->
-===================================================== -->
-
-<div
-  class="page active"
-  id="calculatorPage"
->
-
-<!-- =====================================================
-PEGAR JUSTO DESPUÉS DEL FOOTER
-===================================================== -->
-
-</div>
-
-<!-- =========================
-HISTORY PAGE
-========================= -->
-
-<div
-  class="page"
-  id="historyPage"
->
-
-  <div class="glass-card">
-
-    <div class="section-title">
-      Histórico
-    </div>
-
-    <div
-      class="history-list"
-      id="historyList"
-    ></div>
-
-  </div>
-
-</div>
-
-<!-- =========================
-STATS PAGE
-========================= -->
-
-<div
-  class="page"
-  id="statsPage"
->
-
-  <div class="glass-card">
-
-    <div class="section-title">
-      Estadísticas
-    </div>
-
-    <div class="stats-grid">
-
-      <div class="stats-card">
-
-        <div class="stats-label">
-          Facturación Total
-        </div>
-
-        <div
-          class="stats-value"
-          id="statsFacturacion"
-        >
-          0€
-        </div>
-
-      </div>
-
-      <div class="stats-card">
-
-        <div class="stats-label">
-          Beneficio Total
-        </div>
-
-        <div
-          class="stats-value"
-          id="statsBeneficio"
-        >
-          0€
-        </div>
-
-      </div>
-
-      <div class="stats-card">
-
-        <div class="stats-label">
-          Margen Medio
-        </div>
-
-        <div
-          class="stats-value"
-          id="statsMargen"
-        >
-          0%
-        </div>
-
-      </div>
-
-      <div class="stats-card">
-
-        <div class="stats-label">
-          Productos
-        </div>
-
-        <div
-          class="stats-value"
-          id="statsProductos"
-        >
-          0
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- =========================
-CALENDAR PAGE
-========================= -->
-
-<div
-  class="page"
-  id="calendarPage"
->
-
-  <div class="glass-card">
-
-    <div class="section-title">
-      Calendario
-    </div>
-
-    <div class="calendar-placeholder">
-
-      Próximamente:
-      histórico visual premium
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- =========================
-STORE MODAL
-========================= -->
-
-<div
-  class="modal-overlay"
-  id="storeModal"
->
-
-  <div class="modal-box">
-
-    <div class="modal-title">
-      Nueva tienda
-    </div>
-
-    <input
-      type="text"
-      id="storeInput"
-      placeholder="Nombre de la tienda"
-    >
-
-    <div class="modal-buttons">
-
-      <button
-        class="modal-cancel"
-        onclick="closeStoreModal()"
-      >
-        Cancelar
-      </button>
-
-      <button
-        class="modal-create"
-        onclick="createStore()"
-      >
-        Crear
-      </button>
-
-    </div>
-
-  </div>
-
-</div>
-
-<!-- =====================================================
-PEGAR JUSTO ANTES DE:
-</style>
-===================================================== -->
-
-<style>
-
-.topbar{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  margin-bottom:22px;
-
-}
-
-.topbar-right{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-}
-
-.menu-btn{
-
-  width:58px;
-  height:58px;
-
-  border:none;
-
-  border-radius:22px;
-
-  background:
-    rgba(255,255,255,0.72);
-
-  backdrop-filter:blur(20px);
-
-  box-shadow:var(--shadow);
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:5px;
-
-  cursor:pointer;
-
-}
-
-.menu-btn span{
-
-  width:22px;
-  height:2px;
-
-  border-radius:999px;
-
-  background:var(--text);
-
-}
-
-.time-filters{
-
-  display:flex;
-
-  gap:10px;
-
-}
-
-.time-btn{
-
-  border:none;
-
-  border-radius:18px;
-
-  padding:14px 18px;
-
-  background:
-    rgba(255,255,255,0.72);
-
-  font-weight:700;
-
-  color:var(--text);
-
-}
-
-.time-btn.active{
-
-  background:
-    linear-gradient(
-      135deg,
-      #0A516D,
-      #146F91
-    );
-
-  color:white;
-
-}
-
-.store-btn{
-
-  border:none;
-
-  border-radius:22px;
-
-  padding:18px 22px;
-
-  background:
-    rgba(255,255,255,0.72);
-
-  backdrop-filter:blur(20px);
-
-  box-shadow:var(--shadow);
-
-  font-weight:700;
-
-  color:var(--text);
-
-}
-
-.sidebar-overlay{
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-    rgba(0,0,0,0.16);
-
-  backdrop-filter:blur(8px);
-
-  opacity:0;
-
-  pointer-events:none;
-
-  transition:0.25s ease;
-
-  z-index:2000;
-
-}
-
-.sidebar-overlay.active{
-
-  opacity:1;
-
-  pointer-events:auto;
-
-}
-
-.sidebar{
-
-  position:fixed;
-
-  top:0;
-  left:-320px;
-
-  width:290px;
-  height:100vh;
-
-  background:
-    rgba(255,255,255,0.78);
-
-  backdrop-filter:blur(30px);
-
-  padding:24px;
-
-  transition:0.35s ease;
-
-  z-index:3000;
-
-  box-shadow:
-    0 30px 90px rgba(0,0,0,0.08);
-
-}
-
-.sidebar.active{
-  left:0;
-}
-
-.sidebar-header{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:16px;
-
-  margin-bottom:34px;
-
-}
-
-.sidebar-logo{
-
-  width:58px;
-  height:58px;
-
-  border-radius:22px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #0A516D,
-      #146F91
-    );
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  color:white;
-
-  font-size:22px;
-
-  font-weight:800;
-
-}
-
-.sidebar-title{
-
-  font-size:22px;
-
-  font-weight:800;
-
-  color:var(--blue);
-
-}
-
-.sidebar-subtitle{
-
-  opacity:0.6;
-
-  margin-top:4px;
-
-}
-
-.sidebar-nav{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:12px;
-
-}
-
-.sidebar-link{
-
-  border:none;
-
-  border-radius:22px;
-
-  padding:18px;
-
-  text-align:left;
-
-  background:
-    rgba(255,255,255,0.72);
-
-  font-weight:700;
-
-}
-
-.sidebar-link.active{
-
-  background:
-    linear-gradient(
-      135deg,
-      #0A516D,
-      #146F91
-    );
-
-  color:white;
-
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-.store-menu{
-
-  position:absolute;
-
-  top:90px;
-  right:0;
-
-  width:260px;
-
-  border-radius:28px;
-
-  padding:18px;
-
-  background:
-    rgba(255,255,255,0.82);
-
-  backdrop-filter:blur(24px);
-
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.1);
-
-  display:none;
-
-  z-index:2000;
-
-}
-
-.store-menu.active{
-  display:block;
-}
-
-.store-item{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  padding:14px;
-
-  border-radius:18px;
-
-}
-
-.new-store-btn{
-
-  width:100%;
-
-  margin-top:12px;
-
-}
-
-.stats-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:16px;
-
-}
-
-.stats-card{
-
-  background:
-    rgba(255,255,255,0.72);
-
-  border-radius:24px;
-
-  padding:20px;
-
-}
-
-.stats-label{
-
-  font-size:13px;
-
-  opacity:0.6;
-
-  margin-bottom:10px;
-
-}
-
-.stats-value{
-
-  font-size:28px;
-
-  font-weight:800;
-
-  color:var(--blue);
-
-}
-
-.history-list{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:14px;
-
-}
-
-.history-item{
-
-  background:
-    rgba(255,255,255,0.72);
-
-  border-radius:24px;
-
-  padding:20px;
-
-}
-
-.calendar-placeholder{
-
-  text-align:center;
-
-  padding:40px;
-
-  opacity:0.6;
-
-}
-
-.modal-overlay{
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-    rgba(0,0,0,0.15);
-
-  backdrop-filter:blur(10px);
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  z-index:4000;
-
-}
-
-.modal-overlay.active{
-  display:flex;
-}
-
-.modal-box{
-
-  width:90%;
-  max-width:400px;
-
-  border-radius:34px;
-
-  padding:30px;
-
-  background:
-    rgba(255,255,255,0.84);
-
-  backdrop-filter:blur(30px);
-
-}
-
-.modal-title{
-
-  font-size:28px;
-
-  font-weight:800;
-
-  color:var(--blue);
-
-  margin-bottom:20px;
-
-}
-
-.modal-buttons{
-
-  display:flex;
-
-  gap:12px;
-
-  margin-top:20px;
-
-}
-
-.modal-buttons button{
-
-  flex:1;
-
-}
-
-</style>
-
-<!-- =====================================================
-PEGAR JUSTO ANTES DE:
-</script>
-===================================================== -->
-
-<script>
-
-function toggleSidebar(){
-
-  document
-    .getElementById('sidebar')
-    .classList
-    .toggle('active');
-
-  document
-    .getElementById('sidebarOverlay')
-    .classList
-    .toggle('active');
-
-}
-
-function closeSidebar(){
-
-  document
-    .getElementById('sidebar')
-    .classList
-    .remove('active');
-
-  document
-    .getElementById('sidebarOverlay')
-    .classList
-    .remove('active');
-
-}
-
-function showPage(id,btn){
-
-  document
-    .querySelectorAll('.page')
-    .forEach(page=>{
-
-      page.classList.remove('active');
-
-    });
-
-  document
-    .getElementById(id)
-    .classList.add('active');
-
-  document
-    .querySelectorAll('.sidebar-link')
-    .forEach(link=>{
-
-      link.classList.remove('active');
-
-    });
-
-  btn.classList.add('active');
-
-  closeSidebar();
-
-}
-
-/* =========================
-MULTI STORE
-========================= */
-
-let currentStore =
-  'ZentarioShop';
-
-function getStores(){
-
-  let stores =
-    JSON.parse(
-      localStorage.getItem(
-        'zentarioStores'
-      )
-    );
-
-  if(!stores){
-
-    stores = [
-      {
-        name:'ZentarioShop'
-      }
-    ];
-
-    localStorage.setItem(
-      'zentarioStores',
-      JSON.stringify(stores)
-    );
-
-  }
-
-  return stores;
-
-}
-
-function renderStores(){
-
-  const list =
-    document.getElementById('storeList');
-
-  list.innerHTML = '';
-
-  const stores =
-    getStores();
-
-  stores.forEach((store,index)=>{
-
-    list.innerHTML += `
-
-      <div class="store-item">
-
-        <div
-          onclick="selectStore('${store.name}')"
-        >
-          ${store.name}
-        </div>
-
-        <button
-          onclick="deleteStore(${index})"
-        >
-          −
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-}
-
-function toggleStoreMenu(){
-
-  document
-    .getElementById('storeMenu')
-    .classList
-    .toggle('active');
-
-}
-
-function selectStore(name){
-
-  currentStore = name;
-
-  document
-    .getElementById('currentStore')
-    .innerHTML = name;
-
-  toggleStoreMenu();
-
-}
-
-function openStoreModal(){
-
-  document
-    .getElementById('storeModal')
-    .classList
-    .add('active');
-
-}
-
-function closeStoreModal(){
-
-  document
-    .getElementById('storeModal')
-    .classList
-    .remove('active');
-
-}
-
-function createStore(){
-
-  let stores =
-    getStores();
-
-  if(stores.length >= 6){
-
-    alert(
-      'Máximo 6 tiendas'
-    );
-
-    return;
-
-  }
-
-  const name =
-    document
-      .getElementById('storeInput')
-      .value
-      .trim();
-
-  if(!name) return;
-
-  stores.push({
-    name
-  });
-
-  localStorage.setItem(
-    'zentarioStores',
-    JSON.stringify(stores)
-  );
-
-  renderStores();
-
-  closeStoreModal();
-
-}
-
-function deleteStore(index){
-
-  let stores =
-    getStores();
-
-  if(stores.length <= 1){
-
-    alert(
-      'Debe existir una tienda'
-    );
-
-    return;
-
-  }
-
-  stores.splice(index,1);
-
-  localStorage.setItem(
-    'zentarioStores',
-    JSON.stringify(stores)
-  );
-
-  renderStores();
-
-}
-
-renderStores();
-
-</script>
-  
   <!-- HERO -->
 
   <div class="hero">
