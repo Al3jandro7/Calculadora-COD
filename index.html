@@ -1,0 +1,1183 @@
+<!-- =========================
+ZENTARIO PROFIT
+PREMIUM ECOMMERCE COD APP
+========================= -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+<title>Zentario Profit</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+  --cream:#FDFBF7;
+  --blue:#0A516D;
+  --green:#7DAD93;
+  --orange:#D89A2B;
+  --red:#E35B5B;
+  --text:#15313C;
+
+  --glass:
+    rgba(255,255,255,0.55);
+
+  --border:
+    rgba(255,255,255,0.35);
+
+  --shadow:
+    0 20px 50px rgba(10,81,109,0.08);
+
+  --radius:30px;
+
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+
+  font-family:'Inter',sans-serif;
+
+  background:
+    radial-gradient(circle at top left,
+    rgba(125,173,147,0.15),
+    transparent 35%),
+
+    radial-gradient(circle at top right,
+    rgba(10,81,109,0.15),
+    transparent 30%),
+
+    linear-gradient(
+      180deg,
+      #FDFBF7 0%,
+      #F4F7F8 100%
+    );
+
+  min-height:100vh;
+
+  padding:
+    max(20px, env(safe-area-inset-top))
+    18px
+    40px;
+
+  color:var(--text);
+
+}
+
+.container{
+  max-width:540px;
+  margin:auto;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.hero{
+
+  position:relative;
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0A516D 0%,
+      #146F91 100%
+    );
+
+  border-radius:38px;
+
+  padding:34px;
+
+  margin-bottom:24px;
+
+  color:white;
+
+  box-shadow:
+    0 25px 70px rgba(10,81,109,0.28);
+
+}
+
+.hero::before{
+
+  content:'';
+
+  position:absolute;
+
+  width:220px;
+  height:220px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,0.08);
+
+  top:-80px;
+  right:-70px;
+
+}
+
+.hero::after{
+
+  content:'';
+
+  position:absolute;
+
+  width:150px;
+  height:150px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  bottom:-60px;
+  left:-30px;
+
+}
+
+.hero-title{
+
+  position:relative;
+  z-index:2;
+
+  font-size:36px;
+  font-weight:800;
+
+  letter-spacing:-1.5px;
+
+  margin-bottom:10px;
+
+}
+
+.hero-subtitle{
+
+  position:relative;
+  z-index:2;
+
+  opacity:0.9;
+
+  line-height:1.6;
+
+  font-size:15px;
+
+}
+
+/* =========================
+CARDS
+========================= */
+
+.glass-card{
+
+  background:var(--glass);
+
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+
+  border:1px solid var(--border);
+
+  border-radius:var(--radius);
+
+  padding:24px;
+
+  box-shadow:var(--shadow);
+
+}
+
+.section-title{
+
+  font-size:20px;
+  font-weight:700;
+
+  margin-bottom:22px;
+
+  color:var(--blue);
+
+}
+
+/* =========================
+FIELDS
+========================= */
+
+.field{
+  margin-bottom:18px;
+}
+
+label{
+
+  display:block;
+
+  font-size:14px;
+  font-weight:600;
+
+  margin-bottom:10px;
+
+  color:#2A4753;
+
+}
+
+input,
+select{
+
+  width:100%;
+
+  border:none;
+  outline:none;
+
+  border-radius:22px;
+
+  padding:18px;
+
+  font-size:16px;
+
+  background:
+    rgba(255,255,255,0.78);
+
+  color:#1B1B1B;
+
+  transition:all 0.25s ease;
+
+}
+
+input:focus,
+select:focus{
+
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 10px 30px rgba(10,81,109,0.08),
+    inset 0 0 0 2px rgba(10,81,109,0.08);
+
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.button-group{
+
+  display:flex;
+  gap:12px;
+
+  margin-top:14px;
+
+}
+
+button{
+
+  flex:1;
+
+  border:none;
+
+  border-radius:24px;
+
+  padding:18px;
+
+  font-size:15px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:all 0.25s ease;
+
+}
+
+button:hover{
+  transform:translateY(-3px);
+}
+
+button:active{
+  transform:scale(0.98);
+}
+
+.primary-btn{
+
+  background:
+    linear-gradient(
+      135deg,
+      #7DAD93 0%,
+      #5E9A7B 100%
+    );
+
+  color:white;
+
+  box-shadow:
+    0 12px 30px rgba(125,173,147,0.3);
+
+}
+
+.secondary-btn{
+
+  background:
+    linear-gradient(
+      135deg,
+      #0A516D 0%,
+      #146F91 100%
+    );
+
+  color:white;
+
+  box-shadow:
+    0 12px 30px rgba(10,81,109,0.28);
+
+}
+
+/* =========================
+RESULTS
+========================= */
+
+.results{
+
+  margin-top:26px;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:16px;
+
+}
+
+.result-card{
+
+  position:relative;
+
+  overflow:hidden;
+
+  background:
+    rgba(255,255,255,0.72);
+
+  backdrop-filter:blur(18px);
+
+  border-radius:30px;
+
+  padding:24px;
+
+  box-shadow:var(--shadow);
+
+  animation:
+    fadeUp 0.45s ease;
+
+}
+
+.result-card::before{
+
+  content:'';
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--green),
+      var(--blue)
+    );
+
+}
+
+.result-label{
+
+  font-size:13px;
+
+  color:#73808A;
+
+  font-weight:600;
+
+  margin-bottom:14px;
+
+}
+
+.result-value{
+
+  font-size:32px;
+  font-weight:800;
+
+  letter-spacing:-1px;
+
+  color:var(--blue);
+
+}
+
+.result-sub{
+
+  margin-top:10px;
+
+  font-size:13px;
+
+  color:#7D7D7D;
+
+}
+
+.green{
+  color:var(--green)!important;
+}
+
+.orange{
+  color:var(--orange)!important;
+}
+
+.red{
+  color:var(--red)!important;
+}
+
+/* =========================
+PRODUCT LIST
+========================= */
+
+.saved-products{
+
+  margin-top:20px;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+
+}
+
+.saved-chip{
+
+  background:
+    rgba(255,255,255,0.75);
+
+  border:1px solid rgba(0,0,0,0.04);
+
+  padding:12px 16px;
+
+  border-radius:999px;
+
+  font-size:13px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:all 0.2s ease;
+
+}
+
+.saved-chip:hover{
+
+  transform:translateY(-2px);
+
+  background:white;
+
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+
+  margin-top:28px;
+
+  text-align:center;
+
+  font-size:13px;
+
+  color:#8C8C8C;
+
+}
+
+/* =========================
+ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+@media(max-width:560px){
+
+  .results{
+    grid-template-columns:1fr;
+  }
+
+  .hero-title{
+    font-size:31px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+
+  <div class="hero">
+
+    <div class="hero-title">
+      Zentario Profit
+    </div>
+
+    <div class="hero-subtitle">
+      Calculadora inteligente para Ecommerce COD
+    </div>
+
+  </div>
+
+  <!-- FORM -->
+
+  <div class="glass-card">
+
+    <div class="section-title">
+      Producto
+    </div>
+
+    <div class="field">
+
+      <label>
+        Productos guardados
+      </label>
+
+      <select
+        id="savedProducts"
+        onchange="loadProduct()"
+      >
+
+        <option value="">
+          Selecciona un producto
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Nombre del producto
+      </label>
+
+      <input
+        type="text"
+        id="nombre"
+        placeholder="Ej: CleanShoes™"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Precio producto normal (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="precioNormal"
+        placeholder="29.99"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Precio pack x2 (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="precioPack"
+        placeholder="39.99"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Coste producto + IVA (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="costeProducto"
+        placeholder="4.20"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Coste envío (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="envio"
+        value="7.20"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Gasto total Ads (€)
+      </label>
+
+      <input
+        type="number"
+        step="0.01"
+        id="ads"
+        placeholder="20"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Ventas totales
+      </label>
+
+      <input
+        type="number"
+        id="ventas"
+        placeholder="4"
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Packs x2
+      </label>
+
+      <input
+        type="number"
+        id="packs"
+        placeholder="1"
+      >
+
+    </div>
+
+    <div class="button-group">
+
+      <button
+        class="secondary-btn"
+        onclick="saveProduct()"
+      >
+        Guardar producto
+      </button>
+
+      <button
+        class="primary-btn"
+        onclick="calculate()"
+      >
+        Calcular
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- RESULTS -->
+
+  <div class="results">
+
+    <div class="result-card">
+
+      <div class="result-label">
+        Facturación Total
+      </div>
+
+      <div
+        class="result-value"
+        id="facturacionResult"
+      >
+        0€
+      </div>
+
+    </div>
+
+    <div class="result-card">
+
+      <div class="result-label">
+        Productos Vendidos
+      </div>
+
+      <div
+        class="result-value"
+        id="productosResult"
+      >
+        0
+      </div>
+
+    </div>
+
+    <div class="result-card">
+
+      <div class="result-label">
+        CPA
+      </div>
+
+      <div
+        class="result-value"
+        id="cpaResult"
+      >
+        0€
+      </div>
+
+    </div>
+
+    <div class="result-card">
+
+      <div class="result-label">
+        Beneficio Neto
+      </div>
+
+      <div
+        class="result-value"
+        id="beneficioResult"
+      >
+        0€
+      </div>
+
+    </div>
+
+    <div
+      class="result-card"
+      style="grid-column:1/-1;"
+    >
+
+      <div class="result-label">
+        Margen Neto
+      </div>
+
+      <div
+        class="result-value"
+        id="margenResult"
+      >
+        0%
+      </div>
+
+      <div class="result-sub">
+        Verde = rentable ·
+        Naranja = revisar ·
+        Rojo = peligro
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    ZentarioShop • Profit System
+  </div>
+
+</div>
+
+<script>
+
+/* =========================
+UTILS
+========================= */
+
+function euro(value){
+
+  return value.toLocaleString(
+    'es-ES',
+    {
+      style:'currency',
+      currency:'EUR'
+    }
+  );
+
+}
+
+function animateValue(element, start, end, duration, isEuro=false, isPercent=false){
+
+  let startTimestamp = null;
+
+  const step = (timestamp)=>{
+
+    if(!startTimestamp)
+      startTimestamp = timestamp;
+
+    const progress =
+      Math.min(
+        (timestamp - startTimestamp) / duration,
+        1
+      );
+
+    const value =
+      progress * (end - start) + start;
+
+    if(isEuro){
+
+      element.innerHTML =
+        euro(value);
+
+    }
+    else if(isPercent){
+
+      element.innerHTML =
+        value.toFixed(2) + '%';
+
+    }
+    else{
+
+      element.innerHTML =
+        Math.floor(value);
+
+    }
+
+    if(progress < 1){
+
+      window.requestAnimationFrame(step);
+
+    }
+
+  };
+
+  window.requestAnimationFrame(step);
+
+}
+
+/* =========================
+CALCULATE
+========================= */
+
+function calculate(){
+
+  const precioNormal =
+    parseFloat(
+      document.getElementById('precioNormal').value
+    ) || 0;
+
+  const precioPack =
+    parseFloat(
+      document.getElementById('precioPack').value
+    ) || 0;
+
+  const costeProducto =
+    parseFloat(
+      document.getElementById('costeProducto').value
+    ) || 0;
+
+  const envio =
+    parseFloat(
+      document.getElementById('envio').value
+    ) || 0;
+
+  const ads =
+    parseFloat(
+      document.getElementById('ads').value
+    ) || 0;
+
+  const ventasTotales =
+    parseInt(
+      document.getElementById('ventas').value
+    ) || 0;
+
+  const packs =
+    parseInt(
+      document.getElementById('packs').value
+    ) || 0;
+
+  // =========================
+  // LOGIC
+  // =========================
+
+  const ventasNormales =
+    ventasTotales - packs;
+
+  const productosVendidos =
+    ventasNormales + (packs * 2);
+
+  const facturacion =
+    (ventasNormales * precioNormal)
+    +
+    (packs * precioPack);
+
+  const costeProductos =
+    productosVendidos * costeProducto;
+
+  const costeEnvios =
+    ventasTotales * envio;
+
+  const cpa =
+    ventasTotales > 0
+    ? ads / ventasTotales
+    : 0;
+
+  const beneficio =
+    facturacion
+    -
+    costeProductos
+    -
+    costeEnvios
+    -
+    ads;
+
+  const margen =
+    facturacion > 0
+    ? (beneficio / facturacion) * 100
+    : 0;
+
+  // =========================
+  // RENDER
+  // =========================
+
+  animateValue(
+    document.getElementById('facturacionResult'),
+    0,
+    facturacion,
+    900,
+    true
+  );
+
+  animateValue(
+    document.getElementById('productosResult'),
+    0,
+    productosVendidos,
+    700
+  );
+
+  animateValue(
+    document.getElementById('cpaResult'),
+    0,
+    cpa,
+    700,
+    true
+  );
+
+  animateValue(
+    document.getElementById('beneficioResult'),
+    0,
+    beneficio,
+    900,
+    true
+  );
+
+  const margenEl =
+    document.getElementById('margenResult');
+
+  margenEl.classList.remove(
+    'green',
+    'orange',
+    'red'
+  );
+
+  if(margen >= 25){
+
+    margenEl.classList.add('green');
+
+  }
+  else if(margen >= 15){
+
+    margenEl.classList.add('orange');
+
+  }
+  else{
+
+    margenEl.classList.add('red');
+
+  }
+
+  animateValue(
+    margenEl,
+    0,
+    margen,
+    900,
+    false,
+    true
+  );
+
+}
+
+/* =========================
+SAVE PRODUCTS
+========================= */
+
+function saveProduct(){
+
+  const nombre =
+    document.getElementById('nombre').value.trim();
+
+  const precioNormal =
+    document.getElementById('precioNormal').value;
+
+  const precioPack =
+    document.getElementById('precioPack').value;
+
+  const costeProducto =
+    document.getElementById('costeProducto').value;
+
+  if(!nombre){
+
+    alert(
+      'Introduce un nombre de producto'
+    );
+
+    return;
+
+  }
+
+  let products =
+    JSON.parse(
+      localStorage.getItem('zentarioProducts')
+    ) || [];
+
+  const product = {
+
+    nombre,
+    precioNormal,
+    precioPack,
+    costeProducto
+
+  };
+
+  const existing =
+    products.findIndex(
+      p => p.nombre === nombre
+    );
+
+  if(existing !== -1){
+
+    products[existing] = product;
+
+  }
+  else{
+
+    products.push(product);
+
+  }
+
+  localStorage.setItem(
+    'zentarioProducts',
+    JSON.stringify(products)
+  );
+
+  loadProducts();
+
+  alert(
+    'Producto guardado correctamente'
+  );
+
+}
+
+/* =========================
+LOAD PRODUCTS
+========================= */
+
+function loadProducts(){
+
+  const selector =
+    document.getElementById('savedProducts');
+
+  selector.innerHTML =
+    '<option value="">Selecciona un producto</option>';
+
+  let products =
+    JSON.parse(
+      localStorage.getItem('zentarioProducts')
+    ) || [];
+
+  products.forEach((product,index)=>{
+
+    const option =
+      document.createElement('option');
+
+    option.value = index;
+
+    option.textContent =
+      product.nombre;
+
+    selector.appendChild(option);
+
+  });
+
+}
+
+/* =========================
+LOAD SINGLE PRODUCT
+========================= */
+
+function loadProduct(){
+
+  const selector =
+    document.getElementById('savedProducts');
+
+  const index =
+    selector.value;
+
+  if(index === '') return;
+
+  let products =
+    JSON.parse(
+      localStorage.getItem('zentarioProducts')
+    ) || [];
+
+  const product =
+    products[index];
+
+  document.getElementById('nombre').value =
+    product.nombre;
+
+  document.getElementById('precioNormal').value =
+    product.precioNormal;
+
+  document.getElementById('precioPack').value =
+    product.precioPack;
+
+  document.getElementById('costeProducto').value =
+    product.costeProducto;
+
+}
+
+/* =========================
+INIT
+========================= */
+
+loadProducts();
+
+</script>
+
+</body>
+</html>
